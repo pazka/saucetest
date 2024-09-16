@@ -1,0 +1,27 @@
+@import-normalize;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Consolas', sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #000000 0%, #01011f 90%, #00025f 100%);
+}
+
+header {
+  background: linear-gradient(120deg, #000000 0%, #01011f 90%, #00025f 100%) !important;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+table {
+  background: rgba($color: #000000, $alpha: 0.2)
+}
