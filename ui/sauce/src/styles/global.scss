@@ -61,3 +61,18 @@ table {
     width : 33%;
   }
 }
+
+.swap-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quote-display{
+  width: 100%;
+  
+  overflow: auto;
+  
+  width: 10vw;
+}

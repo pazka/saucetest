@@ -31,6 +31,7 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
     }
     const user = response.responseObject;
 
+    //TODO this dosen't work to refresh the token, try to find a way to refresh the token
     const newToken = await createToken(user);
     res.setHeader('Set-Authorization', newToken);
 

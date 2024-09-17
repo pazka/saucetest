@@ -1,7 +1,7 @@
 import { getApi } from "./baseApi";
 
 export const getSwapQuotes = async (token: string, isBuy: boolean, inAmount: string) => {
-    const response = await getApi<ServiceResponse<TokenMetadataResponse>>("getQuote", {
+    const response = await getApi<ServiceResponse<Quote>>("getQuote", {
         params: {
             token,
             isBuy,
@@ -10,7 +10,7 @@ export const getSwapQuotes = async (token: string, isBuy: boolean, inAmount: str
     });
     
     if (!response.data.success) {
-        throw new Error(response.data.message);
+        return null;
     }
 
     return response.data.responseObject;

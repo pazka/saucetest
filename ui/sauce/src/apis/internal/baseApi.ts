@@ -9,7 +9,6 @@ const baseRequester = axios.create({
 
 const authenticationMiddlewareRequestIntercepter = (config: any) => {
     const token = localStorage.getItem("token");
-    console.log("TOKEN FOUND",token);
     if (token && token != "" ) {
         config.headers.Authorization = `Bearer ${token}`;
     }

@@ -22,8 +22,6 @@ Server is for backend operations
 
 ## TODO
 
-- get the parameters for the transaction
-
 - alchemy -> Send it as a transaction with the provided parameters
 - 0x : Check status of transaction (receipt) or failure
 
@@ -52,3 +50,6 @@ Priority :
 - Tried to do the same with alchemy but return 0x0 ??
 
 - Get token info with alchemy in preparation of swap
+
+- get the parameters for the transaction (quote) with 0x
+
