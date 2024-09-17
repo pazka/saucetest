@@ -10,10 +10,7 @@ export const DexListing = (
         onRowClick?: (data: DexScreener) => void,
         onRowHover?: (data?: DexScreener ) => void
     }) => {
-    const { isLoading, data, error } = useQuery('getAlchemyData', getTokenListings, {
-        cacheTime: 1000 * 60 * 60,
-        staleTime: 1000 * 60 * 60,
-    })
+    const { isLoading, data = [], error } = useQuery('token-listing', getTokenListings)
 
     const columns = [
         {
@@ -41,9 +38,9 @@ export const DexListing = (
             title: 'Links',
             dataIndex: 'links',
             key: 'links',
-            render: (links: Link[]) => (
+            render: (links: Link[] = []) => (
                 <ul>
-                    {links.filter(x => x).map((link, index) => (
+                    {links.map((link, index) => (
                         <li key={index}>
                             <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label ?? link.type}</a>
                         </li>

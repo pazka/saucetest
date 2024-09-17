@@ -16,16 +16,20 @@ Server is for backend operations
 
 - start to enrich apis
 
-## TODO
-
-- Filter dex on eth
+## DOING
 
 - 0x : get a swap quote (buy token , sell token)
+
+## TODO
+
 - get the parameters for the transaction
 
 - alchemy -> Send it as a transaction with the provided parameters
 - 0x : Check status of transaction (receipt) or failure
--
+
+- Swap ETH for coin
+- Setting allowance for selling other coin
+- seeling other coin for eth
 
 Priority :
 
@@ -43,4 +47,8 @@ Priority :
 - Obtained Alchemy API key
 - Obtained 0x API key
 - Used DexScreener API to list latest token ( whatever that means )
+- Filter dex on eth
 - Obtained BaseScan api key to check wallet balance
+- Tried to do the same with alchemy but return 0x0 ??
+
+- Get token info with alchemy in preparation of swap

@@ -11,6 +11,7 @@ basescanRegistry.registerPath({
     method: "get",
     path: "/basescan",
     tags: ["Basescan"],
+    description: "wallet amount in wei",
     request: { query: z.object({ walletAddress: z.string() }) },
     responses: createApiResponse(z.any(), "Success")
 });

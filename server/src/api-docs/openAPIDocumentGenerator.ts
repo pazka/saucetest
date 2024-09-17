@@ -4,9 +4,10 @@ import { alchemyRegistry } from "@/api/alchemy/alchemyRouter";
 import { basescanRegistry } from "@/api/basescan/basescanRouter";
 import { healthCheckRegistry } from "@/api/healthCheck/healthCheckRouter";
 import { userRegistry } from "@/api/user/userRouter";
+import { zeroXRegistry } from "@/api/zeroX/zeroXRouter";
 
 export function generateOpenAPIDocument() {
-  const registry = new OpenAPIRegistry([healthCheckRegistry, userRegistry,alchemyRegistry,basescanRegistry]);
+  const registry = new OpenAPIRegistry([healthCheckRegistry, userRegistry,alchemyRegistry,basescanRegistry,zeroXRegistry]);
   const generator = new OpenApiGeneratorV3(registry.definitions);
 
   return generator.generateDocument({

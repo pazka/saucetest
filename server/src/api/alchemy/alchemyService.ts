@@ -1,25 +1,37 @@
 import { ServiceResponse } from '@/common/models/serviceResponse';
 import { env } from '@/common/utils/envConfig';
-import { Alchemy, Network, TokenBalancesResponse } from 'alchemy-sdk';
+import { Alchemy, Network, TokenBalancesResponse, TokenMetadataResponse } from 'alchemy-sdk';
 
-const settings = {
+const alchemyBase = new Alchemy({
+  apiKey: env.ALCHEMY_API_KEY,
+  network: Network.BASE_MAINNET,
+});
+
+const alchemyEth = new Alchemy({
   apiKey: env.ALCHEMY_API_KEY,
   network: Network.ETH_MAINNET,
-};
-
-const alchemy = new Alchemy(settings);
+});
 
 class AlchemyService {
-  async getAlchemyData(): Promise<ServiceResponse<TokenBalancesResponse | null>> {
-    // get all NFTs owned by the provided address or ENS domain
-    const nfts = alchemy.nft.getNftsForOwner("vitalik.eth");
+  async getWalletData(walletAddress: string): Promise<ServiceResponse<TokenBalancesResponse | null>> {
 
-    const vitalikAddress = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045";
-    const usdcContract = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+    //let res = await alchemy.core.getTokensForOwner(walletAddress);
+    try {
+      let res = await alchemyBase.core.getBalance(walletAddress);
+      return ServiceResponse.success<any>("Alchemy data found", res);
+    } catch (e : any) {
+      return ServiceResponse.failure("Alchemy failed", JSON.parse(e.body));
+    }
+  }
 
-    // Print token balances of USDC in Vitalik's address
-    const res = await alchemy.core.getTokenBalances(vitalikAddress, [usdcContract])
-    return ServiceResponse.success<TokenBalancesResponse>("Alchemy data found", res);
+  async getTokenMetaData(address: string): Promise<ServiceResponse<TokenMetadataResponse | null>> {
+    try {
+      let res = await alchemyEth.core.getTokenMetadata(address);
+      return ServiceResponse.success<any>("Alchemy data found", res);
+    } catch (e : any) {
+      return ServiceResponse.failure("Alchemy failed", JSON.parse(e.body));
+    }
+
   }
 }
 

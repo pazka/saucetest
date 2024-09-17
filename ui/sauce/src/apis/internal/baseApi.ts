@@ -9,7 +9,8 @@ const baseRequester = axios.create({
 
 const authenticationMiddlewareRequestIntercepter = (config: any) => {
     const token = localStorage.getItem("token");
-    if (token) {
+    console.log("TOKEN FOUND",token);
+    if (token && token != "" ) {
         config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -35,5 +36,5 @@ async function postApi<A>(url: string, data: any, config?: AxiosRequestConfig): 
     return baseRequester.post(url, data, config);
 }
 
-export { getApi, postApi };
+export { baseRequester, getApi, postApi };
 

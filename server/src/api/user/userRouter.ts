@@ -4,7 +4,6 @@ import { z } from "zod";
 
 import { createApiResponse } from "@/api-docs/openAPIResponseBuilders";
 import { GetUserSchema, SecureUserSchema, UserSchema } from "@/api/user/userModel";
-import { isAuthenticated } from "@/common/middleware/authenticationEnforcer";
 import { validateRequest } from "@/common/utils/httpHandlers";
 import { userController } from "./userController";
 
@@ -42,7 +41,7 @@ userRegistry.registerPath({
   security: [{ [bearerAuth.name]: [] }],
 });
 
-userRouter.get("/:id", validateRequest(GetUserSchema),isAuthenticated, userController.getUser);
+userRouter.get("/:id", validateRequest(GetUserSchema), userController.getUser);
 
 userRouter.post("/login", userController.login);
 

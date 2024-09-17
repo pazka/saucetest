@@ -1,20 +1,13 @@
 import { ServiceResponse } from '@/common/models/serviceResponse';
 import { env } from '@/common/utils/envConfig';
+import serialize from '@/common/utils/serializerQuery';
 
-
-function serialize(obj: any) {
-  var str = [];
-  for (var p in obj)
-    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-  return str.join("&");
-}
 
 //use fetch
-const BASE_URL = "https://api.basescan.org/api/"
+const BASE_URL = "https://api.basescan.org/api"
 
 async function getApi<A>(url: string, queryParams?: { [key: string]: string }, config?: RequestInit): Promise<A> {
   const composedUrl = `${BASE_URL}${url}?${serialize(queryParams ?? {})}`;
-  console.log(composedUrl);
   const response = await fetch(composedUrl, config);
   return response.json();
 }
@@ -35,7 +28,7 @@ class BasescanService {
       return ServiceResponse.failure(walletEthBalance, null);
     }
 
-    return ServiceResponse.success("Wallet balance in eth", walletEthBalance.result);
+    return ServiceResponse.success("Wallet balance in wei", walletEthBalance.result);
   }
 }
 

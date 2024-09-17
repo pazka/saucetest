@@ -7,11 +7,24 @@ import { alchemyController } from "./alchemyController";
 export const alchemyRegistry = new OpenAPIRegistry();
 export const alchemyRouter: Router = Router();
 
+alchemyRouter.get("/wallet", alchemyController.getWalletData);
+
 alchemyRegistry.registerPath({
     method: "get",
-    path: "/alchemy",
+    path: "/alchemy/wallet",
     tags: ["Alchemy"],
-    responses: createApiResponse(z.any(), "Success"),
+    description: "wallet amount in wei",
+    request: { query: z.object({ walletAddress: z.string() }) },
+    responses: createApiResponse(z.any(), "Success")
 });
 
-alchemyRouter.get("/", alchemyController.getAlchemyData);
+alchemyRouter.get("/token", alchemyController.getTokenMetaData);
+
+alchemyRegistry.registerPath({
+    method: "get",
+    path: "/alchemy/token",
+    tags: ["Alchemy"],
+    description: "token metadata",
+    request: { query: z.object({ address: z.string() }) },
+    responses: createApiResponse(z.any(), "Success")
+});

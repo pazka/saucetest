@@ -11,6 +11,7 @@ import requestLogger from "@/common/middleware/requestLogger";
 import helmet from "helmet";
 import { alchemyRouter } from "./api/alchemy/alchemyRouter";
 import { basescanRouter } from "./api/basescan/basescanRouter";
+import { zeroXRouter } from "./api/zeroX/zeroXRouter";
 
 const logger = pino({ name: "server start" });
 const app: Express = express();
@@ -21,7 +22,7 @@ app.set("trust proxy", true);
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "*", credentials: true })); //TODO find out why cors is not working
+app.use(cors({ origin: "*", credentials: true, exposedHeaders: ['Set-Authorization'] })); //TODO find out why cors is not working
 app.use(helmet());
 app.use(rateLimiter);
 
@@ -33,6 +34,7 @@ app.use("/health-check", healthCheckRouter);
 app.use("/users", userRouter);
 app.use('/alchemy', alchemyRouter);
 app.use('/basescan', basescanRouter);
+app.use('/0x', zeroXRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
