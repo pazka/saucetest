@@ -67,7 +67,7 @@ window.env = {
   "PSModulePath": "C:\\Users\\aweisser\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files\\OpenRPA\\;C:\\Program Files (x86)\\Microsoft SQL Server\\160\\Tools\\PowerShell\\Modules\\",
   "PUBLIC": "C:\\Users\\Public",
   "PyCharm Community Edition": "C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.3\\bin;",
-  "REACT_APP_API_URL": "https://api.dev.local/",
+  "REACT_APP_API_URL": "http://localhost:8080",
   "RIDER_DISABLE_IIS_EXPRESS_CONFIG": "true",
   "SESSIONNAME": "Console",
   "SystemDrive": "C:",
