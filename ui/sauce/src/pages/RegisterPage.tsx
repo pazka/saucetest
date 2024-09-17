@@ -13,6 +13,8 @@ export const RegisterPage = () => {
     const { status, data, error, isLoading ,refetch} = useQuery('register', ()=> createUser(username,email,password),{
         enabled: false,
         refetchOnWindowFocus: false,
+        cacheTime: 0,
+        staleTime: 0,
     });
     
     const handleRegister = async () => {
@@ -30,7 +32,7 @@ export const RegisterPage = () => {
         if(status === 'error'){
             alert("User creation failed");
         }
-    }, [data]);
+    }, [status]);
     
     return (
         <div>

@@ -17,6 +17,8 @@ export const LoginPage = () => {
     const { status, data, error, isLoading, refetch } = useQuery('login', () => login(email, password), {
         enabled: false,
         refetchOnWindowFocus: false,
+        cacheTime: 0,
+        staleTime: 0,
     });
 
     const handleLogin = async () => {
@@ -31,7 +33,7 @@ export const LoginPage = () => {
         if (status === 'error') {
             displayNotification("Login failed");
         }
-    }, [data]);
+    }, [status]);
 
     if (user) {
         return <div>Welcome, {user.name} <LogoutButton />  </div>;

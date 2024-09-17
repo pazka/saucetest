@@ -4,7 +4,8 @@ import { getTokenListings } from "../apis/dexScreener/tokensApi";
 
 export const PublicHomePage = () => {
     const { isLoading, data, error } = useQuery('getAlchemyData', getTokenListings, {
-        cacheTime: 1000 * 60 * 60
+        cacheTime: 1000 * 60 * 60,
+        staleTime : 1000 * 60 * 60,
     })
 
     const columns = [
