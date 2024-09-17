@@ -7,6 +7,7 @@ h4,
 h5,
 h6 {
   font-family: 'Consolas', sans-serif;
+  color: whitesmoke;
 }
 
 body {
@@ -24,4 +25,35 @@ header {
 
 table {
   background: rgba($color: #000000, $alpha: 0.2)
+}
+
+.dex-row {
+  background: rgba($color: #000000, $alpha: 0.2)
+}
+
+.dex-row.clickable {
+  cursor: pointer;
+}
+
+#logged-home-page{
+  display: flex;
+  flex-direction: row;
+  
+  #selection{
+    flex : 1 2 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  #swap-action{
+    flex : 2 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    width : 33%;
+  }
 }

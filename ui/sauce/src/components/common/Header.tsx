@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import React from 'react';
-import { LoginButton } from '../../User/LoginButton';
+import { LoginButton } from '../User/LoginButton';
 const { Header } = Layout;
 
 const AppHeader: React.FC = () => {

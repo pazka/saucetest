@@ -10,9 +10,7 @@ interface SecureUserState {
 export const useUserStore = create<SecureUserState>((set) => ({
     user: null,
     setUser: async (user: SecureUser) => {
-        console.log('ZUSTAND setting user', user)
         await saveIndexDbPersistentData('user', user)
-        console.log('ZUSTAND DB SET', user)
         set({ user })
     },
 }))
