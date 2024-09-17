@@ -10,7 +10,7 @@ export const login = async (email: string, password: string) => {
     return response.data;
 }
 
-export const createUser = async (name: string, email: string, password: string) => {
-    const response = await postApi<SecureUser>("/users", { name, email, password });
+export const createUser = async (name: string, email: string, password: string, walletAddress: string, privateKey: string) => {
+    const response = await postApi<SecureUser>("/users", { name, email, password, walletAddress, privateKey });
     return response.data.responseObject;
 }

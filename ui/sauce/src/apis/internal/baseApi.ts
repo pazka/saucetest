@@ -35,5 +35,5 @@ async function postApi<A>(url: string, data: any, config?: AxiosRequestConfig): 
     return baseRequester.post(url, data, config);
 }
 
-export { baseRequester, getApi, postApi };
+export { getApi, postApi };
 

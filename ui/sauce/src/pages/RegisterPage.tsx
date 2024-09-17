@@ -9,31 +9,33 @@ export const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    
-    const { status, data, error, isLoading ,refetch} = useQuery('register', ()=> createUser(username,email,password),{
+    const [privateKey, setPrivateKey] = useState('');
+    const [walletAddress, setWalletAddress] = useState('');
+
+    const { status, data, error, isLoading, refetch } = useQuery('register', () => createUser(username, email, password, walletAddress, privateKey), {
         enabled: false,
         refetchOnWindowFocus: false,
         cacheTime: 0,
         staleTime: 0,
     });
-    
+
     const handleRegister = async () => {
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             alert("Passwords do not match");
             return;
         }
         await refetch();
     };
-    
+
     useEffect(() => {
-        if(status === 'success'){
+        if (status === 'success') {
             alert("User created successfully");
         }
-        if(status === 'error'){
+        if (status === 'error') {
             alert("User creation failed");
         }
     }, [status]);
-    
+
     return (
         <div>
             <Input
@@ -60,7 +62,20 @@ export const RegisterPage = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {!isLoading &&<Button disabled={isLoading} onClick={handleRegister}>Register</Button>}
+            <span><Input
+                type="text"
+                placeholder="Private Key"
+                value={privateKey}
+                onChange={(e) => setPrivateKey(e.target.value)}
+            /> ⚠⚠ FOR DEBUG PURPOSE, DON'T PUT ANYTHING LINKED TO REAL MONEY</span>
+            <Input
+                type="text"
+                placeholder="Wallet Address"
+                value={walletAddress}
+                onChange={(e) => setWalletAddress(e.target.value)}
+            />
+
+            {!isLoading && <Button disabled={isLoading} onClick={handleRegister}>Register</Button>}
             {isLoading && <Loader />}
         </div>
     );

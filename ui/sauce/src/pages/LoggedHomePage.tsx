@@ -26,6 +26,10 @@ export const LoggedHomePage = () => {
         <div id="selection">
             <DexListing onRowClick={handleRowClick} onRowHover={handleRowHover} />
         </div>
+        <div>
+            <h2>Wallet</h2>
+            
+        </div>
         <div id="swap-action">
             <h2>Swap</h2>
 

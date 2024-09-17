@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 
 const baseRequester = axios.create({
-    baseURL: "https://api.dexscreener.com/",
+    baseURL: process.env.REACT_APP_API_URL,
     timeout: 10000,
 });
 

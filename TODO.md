@@ -43,3 +43,4 @@ Priority :
 - Obtained Alchemy API key
 - Obtained 0x API key
 - Used DexScreener API to list latest token ( whatever that means )
+- Obtained BaseScan api key to check wallet balance

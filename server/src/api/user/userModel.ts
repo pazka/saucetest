@@ -13,12 +13,21 @@ export const UserSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
+  privateKey: z.string(),
+  walletAddress: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
 
 // Input Validation for 'GET users/:id' endpoint
-export const SecureUserSchema = UserSchema.omit({ password: true, createdAt: true, updatedAt: true });
+export const SecureUserSchema = UserSchema.pick({
+  id: true,
+  name: true,
+  email: true,
+  walletAddress: true,
+  createdAt: true,
+  updatedAt: true,
+});
 
 
 // Input Validation for 'GET users/:id' endpoint

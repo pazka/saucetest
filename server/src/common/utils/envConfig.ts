@@ -13,4 +13,6 @@ export const env = cleanEnv(process.env, {
   TOKEN_SECRET : str(),
   ALCHEMY_API_KEY: str(),
   "0X_API_KEY": str(),
+  BASESCAN_API_KEY: str(),
+  DEV_TEST_PRIVATEKEY:str({ devDefault: testOnly("pk") }),
 });

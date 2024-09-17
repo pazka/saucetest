@@ -10,6 +10,7 @@ import rateLimiter from "@/common/middleware/rateLimiter";
 import requestLogger from "@/common/middleware/requestLogger";
 import helmet from "helmet";
 import { alchemyRouter } from "./api/alchemy/alchemyRouter";
+import { basescanRouter } from "./api/basescan/basescanRouter";
 
 const logger = pino({ name: "server start" });
 const app: Express = express();
@@ -31,6 +32,7 @@ app.use(requestLogger);
 app.use("/health-check", healthCheckRouter);
 app.use("/users", userRouter);
 app.use('/alchemy', alchemyRouter);
+app.use('/basescan', basescanRouter);
 
 // Swagger UI
 app.use(openAPIRouter);

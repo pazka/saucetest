@@ -1,11 +1,14 @@
 import { NewUserDTO, SecureUserSchema, type SecureUser, type User } from "@/api/user/userModel";
+import { env } from "@/common/utils/envConfig";
 
 export const users: User[] = [
   {
     id: 1,
-    name: "Alice",
+    name: "Alex",
     email: "alice@example.com",
     password: "password",
+    privateKey: env.DEV_TEST_PRIVATEKEY,
+    walletAddress: "0x21480CD2a0406eC585Ebc2e28a87aa0006461904", //my adress for etst purposes
     createdAt: new Date(),
     updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days later
   },
@@ -14,6 +17,8 @@ export const users: User[] = [
     name: "Robert",
     email: "Robert@example.com",
     password: "password",
+    privateKey: env.DEV_TEST_PRIVATEKEY,
+    walletAddress: "0x21480CD2a0406eC585Ebc2e28a87aa0006461904",
     createdAt: new Date(),
     updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days later
   }
