@@ -1,6 +1,11 @@
 import { getApi } from "./baseApi";
 
-export const getTokenListings = async () => {
-    const response = await getApi<DexScreener[]>("token-profiles/latest/v1");
-    return response.data.filter(x => x.chainId === "ethereum");
+export const getWalletEthBalance = async (walletAddress : string) => {
+    const response = await getApi<ServiceResponse<string>>("",{params: {walletAddress}});
+    
+    if(!response.data.success){
+        throw new Error(response.data.message);
+    }
+    
+    return parseInt(response.data.responseObject) / 1000000000000000000;
 }

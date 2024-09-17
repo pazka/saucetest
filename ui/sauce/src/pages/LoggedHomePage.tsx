@@ -1,5 +1,9 @@
+import { useEffect } from "react";
+import { useQuery } from "react-query";
+import { getWalletEthBalance } from "../apis/baseorg/baseorgApi";
 import { DexListing } from "../components/common/DexListing";
 import { useTokenStore } from "../states/tokenState";
+import { useUserStore } from "../states/userState";
 
 
 const renderToken = (token: DexScreener) => <>
@@ -10,25 +14,32 @@ const renderToken = (token: DexScreener) => <>
 
 
 export const LoggedHomePage = () => {
-    const { token, locked,setToken,setLocked } = useTokenStore();
+    const { token, locked, setToken, setLocked } = useTokenStore();
+    const { user } = useUserStore();
+
+    const { isLoading, data, error, refetch } = useQuery("walletBalance", () => getWalletEthBalance(user?.walletAddress ?? ""));
+
+    useEffect(() => {
+        refetch();
+    }, [user?.walletAddress])
 
     const handleRowHover = (token?: DexScreener) => {
         if (locked) return;
         setToken(token);
     }
-    
+
     const handleRowClick = (token?: DexScreener) => {
         setToken(token);
         setLocked(token !== null);
     }
-    
+
     return (<div id="logged-home-page">
         <div id="selection">
             <DexListing onRowClick={handleRowClick} onRowHover={handleRowHover} />
         </div>
         <div>
             <h2>Wallet</h2>
-            
+            {isLoading ? <p>Loading...</p> : error ? <p>Error</p> : <p>{data} ETH</p>}
         </div>
         <div id="swap-action">
             <h2>Swap</h2>
